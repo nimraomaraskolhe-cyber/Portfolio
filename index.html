@@ -63,13 +63,30 @@ nav a:hover {color:#38bdf8;}
 
 .hero-text p {margin-top:15px;opacity:0.8;}
 
+/* HERO IMAGE: Button-like hover animation (premium feel) */
 .hero img {
   width:220px;
   height:400px;
   padding:12px 25px;
   object-fit: cover;
-  border-radius:12px; /* rectangle with slight curve */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border-radius:12px;
+
+  /* Base shadow */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+
+  /* Same smooth transition as buttons */
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect (same behavior as .btn) */
+.hero img:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(56,189,248,0.5);
+}
+
+/* Click effect (same as button press) */
+.hero img:active {
+  transform: scale(0.96);
 }
 /* Apple Buttons */
 .btn {
@@ -158,7 +175,8 @@ footer {
     <a href="#skills">Skills</a>
     <a href="#Education">Education</a>
     <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href="#contact">Contact</a>    
+    <a href="#languages">languages</a>
   </nav>
 </header>
 
@@ -266,6 +284,18 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- languages -->
+<section id="languages" class="reveal">
+  <h2>languages</h2>
+  <div class="grid">
+    <div class="card"> English</div>
+    <div class="card"> Hindi</div>
+    <div class="card">Marathi</div>
+    
+  </div>
+</section>
+
 
 <!-- CONTACT -->
 <section id="contact" class="reveal">
