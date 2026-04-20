@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digambar Maraskolhe | Civil Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b1120;
+  --glass: rgba(255,255,255,0.05);
+  --accent: linear-gradient(135deg,#38bdf8,#6366f1);
+  --text: #e2e8f0;
+}
+
+* {margin:0;padding:0;box-sizing:border-box;}
+
+html {scroll-behavior:smooth;}
+
+body {
+  font-family:'Poppins',sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  padding: 20px 10%;
+  display:flex;
+  justify-content:space-between;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
+}
+
+nav a {
+  margin-left:20px;
+  color:var(--text);
+  text-decoration:none;
+  transition:0.3s;
+}
+
+nav a:hover {color:#38bdf8;}
+
+/* Hero */
+.hero {
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10%;
+}
+
+.hero-text h1 {
+  font-size:3rem;
+  background: var(--accent);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-text p {margin-top:15px;opacity:0.8;}
+
+.hero img {
+  width:220px;
+  height:400px;
+  object-fit: cover;
+  border-radius:12px; /* rectangle with slight curve */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+/* Apple Buttons */
+.btn {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  border-radius:30px;
+  background: var(--accent);
+  color:white;
+  text-decoration:none;
+  margin-right:10px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(56,189,248,0.5);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* Sections */
+section {padding:100px 10%;}
+
+/* Reveal Animation */
+.reveal {
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1s ease;
+}
+
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Grid */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card {
+  background: var(--glass);
+  padding:25px;
+  border-radius:15px;
+  backdrop-filter: blur(12px);
+  transition:0.4s;
+}
+
+.card:hover {
+  transform:translateY(-10px) scale(1.02);
+}
+
+.project-img {
+  width:100%;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+ul {margin-top:15px;line-height:1.8;}
+
+/* Footer */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#020617;
+}
+
+@media(max-width:768px){
+  .hero {flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Digambar</h2>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#proof">Proof</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Digambar Maraskolhe</h1>
+    <p>
+      Civil Engineering Student | BOQ & Quantity Takeoff Specialist  
+      Delivering Accurate Estimation & Cost Optimization Solutions
+    </p>
+
+    <a href="Digambar_Maraskolhe_OnePage_Resume.pdf" target="_blank" class="btn">
+📄     View Resume
+    </a>
+
+    <a href="Digambar_Maraskolhe_OnePage_Resume.pdf" download class="btn">
+       ⬇ Download Resume
+    </a>
+    <a href="https://www.linkedin.com/in/digambar-maraskolhe-251a92360/" 
+    target="_blank" rel="noopener noreferrer"
+    class="btn" style="background:#0A66C2;">
+    View LinkedIn Profile
+    </a>
+  </div>
+
+  <img src="my_photo.jpg" alt="Profile">
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <p>
+    Civil Engineering student with internship experience at PWD Sakoli.
+    Skilled in BOQ preparation, estimation, and drawing interpretation.
+    Focused on efficient and cost-effective construction solutions.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">AutoCAD</div>
+    <div class="card">BOQ Preparation</div>
+    <div class="card">Quantity Takeoff</div>
+    <div class="card">Estimation</div>
+    <div class="card">Construction Drawings</div>
+    <div class="card">Site Work</div>
+  </div>
+</section>
+<!-- EDUCATION -->
+<section id="Education" class="reveal">
+  <h2>Education</h2>
+  <div class="grid">
+    <div class="card"> Diploma in Civil Engineering – Government Polytechnic College Sakoli (Expected 2026) – 75.56%</div>
+    <div class="card"> 12th Science – Progressive English School, Gondia (2024) – 65.8%</div>
+    <div class="card">10th – Podar International School, Bhandara (2022) – 67%</div>
+    
+  </div>
+</section>
+
+
+<!-- PROOF -->
+<section id="proof" class="reveal">
+  <h2>Work Proof</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>BOQ Sample</h3>
+      <p>Detailed BOQ for residential project</p>
+      <img src="boq.jpg" class="project-img">
+    </div>
+
+    <div class="card">
+      <h3>AutoCAD Drawing</h3>
+      <p>2D plan used for quantity takeoff</p>
+      <img src="drawing.jpg" class="project-img">
+    </div>
+
+    <div class="card">
+      <h3>Site Work</h3>
+      <p>Experience from PWD Internship</p>
+      <img src="site.jpg" class="project-img">
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Residential BOQ</h3>
+      <p>Prepared BOQ using real drawings</p>
+    </div>
+
+    <div class="card">
+      <h3>Quantity Takeoff</h3>
+      <p>Material calculations using AutoCAD</p>
+    </div>
+
+    <div class="card">
+      <h3>PWD Internship</h3>
+      <p>Worked on estimation and site basics</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p>Open to internships, site roles, and estimation work opportunities.</p>
+  <p>Email: nimraomaraskolhe@gmail.com</p>
+  <p>Phone: +91 7822921809</p>
+
+  <a href="mailto:nimraomaraskolhe@gmail.com" class="btn">Email Me</a>
+
+  <a href="https://www.linkedin.com/in/digambar-maraskolhe-251a92360/" 
+  target="_blank" rel="noopener noreferrer"
+  class="btn" style="background:#0A66C2;">
+  LinkedIn
+  </a>
+
+ <a href="Digambar_Maraskolhe_OnePage_Resume.pdf" target="_blank" class="btn">
+📄 View Resume
+</a>
+
+<a href="Digambar_Maraskolhe_OnePage_Resume.pdf" download class="btn">
+⬇ Download Resume
+</a>
+</section>
+
+<footer>
+  <p>© 2026 Digambar Maraskolhe</p>
+</footer>
+
+<!-- Scroll Animation JS -->
+<script>
+function reveal() {
+  const elements = document.querySelectorAll('.reveal');
+
+  elements.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', reveal);
+</script>
+
+</body>
+</html>
