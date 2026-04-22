@@ -29,11 +29,13 @@ body {
 header {
   position: sticky;
   top: 0;
+  z-index: 1000;
   padding: 20px 10%;
   display:flex;
   justify-content:space-between;
   background: rgba(0,0,0,0.4);
   backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 nav a {
@@ -204,6 +206,7 @@ footer {
 }
 .slider {
   position: relative;
+  z-index: 1;
   max-width: 700px;
   margin: 40px auto;
   overflow: hidden;
@@ -224,17 +227,33 @@ footer {
 }
 
 /* Caption */
+
 .caption {
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.5);
+  transform: translateX(-50%) translateY(-10px);
+  
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   color: #fff;
-  padding: 6px 15px;
-  border-radius: 20px;
+  padding: 8px 20px;
+  border-radius: 25px;
   font-size: 13px;
-  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+/* Active animation */
+.caption.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Arrows */
@@ -504,23 +523,28 @@ document.addEventListener("DOMContentLoaded", function () {
   let interval;
 
   function showSlides(i) {
-    if (slides.length === 0) return; // safety
+  if (slides.length === 0) return;
 
-    slides.forEach(slide => slide.classList.remove("active"));
-    dots.forEach(dot => dot.classList.remove("active"));
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
 
-    if (i >= slides.length) index = 0;
-    else if (i < 0) index = slides.length - 1;
-    else index = i;
+  if (i >= slides.length) index = 0;
+  else if (i < 0) index = slides.length - 1;
+  else index = i;
 
-    slides[index].classList.add("active");
+  slides[index].classList.add("active");
 
-    if (dots[index]) dots[index].classList.add("active");
+  if (dots[index]) dots[index].classList.add("active");
 
-    if (caption) {
+  if (caption) {
+    caption.classList.remove("show"); // reset animation
+
+    setTimeout(() => {
       caption.innerText = slides[index].getAttribute("data-text") || "PWD Work";
-    }
+      caption.classList.add("show"); // animate
+    }, 100);
   }
+}
 
   function startAutoSlide() {
     interval = setInterval(() => {
