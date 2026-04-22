@@ -63,19 +63,36 @@ nav a:hover {color:#38bdf8;}
 
 .hero-text p {margin-top:15px;opacity:0.8;}
 
-/* HERO IMAGE: Button-like hover animation (premium feel) */
 .hero img {
-  width:220px;
-  height:400px;
-  padding:12px 25px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
-  border-radius:12px;
+  border-radius: 50%; /* makes it a circle */
+  padding: 0; /* remove padding for proper circle */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border: 4px solid #6366f1;
 
   /* Base shadow */
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 
-  /* Same smooth transition as buttons */
+  /* Smooth transition */
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #6366f1;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Zoom on hover */
+.hero img:hover {
+  transform: scale(1.1);  /* zoom */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
 /* Hover effect (same behavior as .btn) */
@@ -112,7 +129,10 @@ nav a:hover {color:#38bdf8;}
 }
 
 /* Sections */
-section {padding:100px 10%;}
+section {
+  padding:100px 10%;
+  scroll-margin-top:80px;
+}
 
 /* Reveal Animation */
 .reveal {
@@ -176,8 +196,9 @@ footer {
     <a href="#Softwares">Softwares</a>
     <a href="#Education">Education</a>
     <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>    
     <a href="#Languages">Languages</a>
+    <a href="#contact">Contact</a>    
+    
   </nav>
 </header>
 
@@ -198,7 +219,7 @@ footer {
     </a>
     <a href="https://www.linkedin.com/in/digambar-maraskolhe-251a92360/" 
     target="_blank" rel="noopener noreferrer"
-    class="btn" style="background:#0A66C2;">
+    class="btn" style="background:#0a66c2;">
     View LinkedIn Profile
     </a>
   </div>
