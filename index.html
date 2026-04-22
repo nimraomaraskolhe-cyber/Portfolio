@@ -209,15 +209,29 @@ footer {
   z-index: 1;
   max-width: 700px;
   margin: 40px auto;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 15px;
 }
+
+.prev {
+  left: -50px;   /* outside left */
+}
+
+.next {
+  right: -50px;  /* outside right */
+}
+
 
 .slide {
   width: 100%;
   display: none;
   border-radius: 15px;
   opacity: 0;
+  object-fit: contain;
+
+  background: #000;
+  image-rendering: auto;
+
 
   transition: 
     opacity 0.8s ease-in-out,
@@ -230,9 +244,53 @@ footer {
   filter: brightness(1.05);
 }
 
+.slider-title {
+  display: inline-block;
+  width: fit-content;
+  margin: 20px auto 30px;
+  padding: 10px 25px;
+
+  font-size: 20px;          /* 🔥 bigger */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  color: #38bdf8;
+  text-align: center;
+
+  /* 🧊 Glass effect */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.15);
+
+  /* ✨ Smooth animation */
+  transition: all 0.3s ease;
+
+  display: block;
+  width: fit-content;
+}
+
+
+.slider-title:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .slide.active {
   display: block;
   opacity: 1;
+}
+
+.screenshot {
+  object-fit: contain;
+  background: #000;
+}
+
+.screenshot:hover {
+  transform: scale(1.01);
 }
 
 /* Caption */
@@ -282,7 +340,8 @@ footer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.1);
   border: none;
   color: white;
   font-size: 20px;
@@ -317,6 +376,51 @@ footer {
 .dot.active {
   background: #38bdf8;
 }
+
+#imageViewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#imageViewer img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.viewer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.viewer-arrow.left {
+  left: 20px;
+}
+
+.viewer-arrow.right {
+  right: 20px;
+}
+
+.viewer-arrow:hover {
+  background: #38bdf8;
+}
+
 </style>
 </head>
 
@@ -425,23 +529,22 @@ footer {
   <div class="slider">
 
     <!-- Caption -->
-    <div class="caption" id="captionText">
-        PWD Internship Photos
-    </div>
+    <p class="slider-title">Public Work Department Internship</p>
 
     <!-- Slides -->
     <div class="slides">
-      <img src="pwd_site_1.jpg" class="slide active">
-      <img src="pwd_site_2.jpg" class="slide">
-      <img src="pwd_site_3.jpg" class="slide">
-      <img src="pwd_site_4.jpg" class="slide">
-      <img src="pwd_site_5.jpg" class="slide">
+      <img src="pwd_site_1.jpg" class="slide active" onclick="openImage(this.src)">
+      <img src="pwd_site_2.jpg" class="slide" onclick="openImage(this.src)">
+      <img src="pwd_site_3.jpg" class="slide" onclick="openImage(this.src)">
+      <img src="pwd_site_4.jpg" class="slide" onclick="openImage(this.src)">
+      <img src="pwd_site_5.jpg" class="slide" onclick="openImage(this.src)">
 
     </div>
 
     <!-- Arrows -->
-    <button class="arrow prev" onclick="changeSlide(-1)">❮</button>
-    <button class="arrow next" onclick="changeSlide(1)">❯</button>
+      <button class="arrow prev">❮</button>
+      <button class="arrow next">❯</button>
+  
 
   <!-- Dots -->
   <div class="dots">
@@ -452,6 +555,40 @@ footer {
       <span class="dot" onclick="goToSlide(4)"></span>
   </div>
 
+</section>
+
+<section id="proof2" class="reveal">
+
+  <div class="slider">
+
+
+     <!-- slider Title -->
+  <p class="slider-title">Measurement Sheet Preparation</p>
+    
+    <!-- Slides -->
+    <img src="Measurment_sheet_1.jpg" class="slide active screenshot" data-text="Measurement Sheet 1" onclick="openImage(this.src)">
+    <img src="Measurment_sheet_2.jpg" class="slide screenshot" data-text="Measurement Sheet 2" onclick="openImage(this.src)">
+    <video class="slide" muted>
+    <source src="Measurment_sheet_video.mp4" type="video/mp4">
+  </video>
+
+    <img src="Measurment_sheet_3.jpg" class="slide screenshot" data-text="Measurement Sheet 3" onclick="openImage(this.src)">
+    <img src="Measurment_sheet_4.jpg" class="slide screenshot" data-text="Measurement Summary" onclick="openImage(this.src)">
+
+    <!-- Arrows -->
+   <button class="arrow prev">❮</button>
+  <button class="arrow next">❯</button>
+
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+    </div>
+
+  </div>
+  
 </section>
 
 <!-- PROJECTS -->
@@ -475,6 +612,7 @@ footer {
     </div>
   </div>
 </section>
+
 
 <!-- Languages -->
 <section id="Languages" class="reveal">
@@ -534,69 +672,7 @@ function reveal() {
 
 window.addEventListener('scroll', reveal);
 
-
-// Slideshow
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let slides = document.querySelectorAll(".slide");
-  let dots = document.querySelectorAll(".dot");
-  let caption = document.getElementById("captionText");
-
-  let index = 0;
-  let interval;
-
-  function showSlides(i) {
-  if (slides.length === 0) return;
-
-  slides.forEach(slide => slide.classList.remove("active"));
-  dots.forEach(dot => dot.classList.remove("active"));
-
-  if (i >= slides.length) index = 0;
-  else if (i < 0) index = slides.length - 1;
-  else index = i;
-
-  slides[index].classList.add("active");
-
-  if (dots[index]) dots[index].classList.add("active");
-
-  if (caption) {
-    caption.classList.remove("show"); // reset animation
-
-    setTimeout(() => {
-      caption.innerText = slides[index].getAttribute("data-text") || "PWD Work";
-      caption.classList.add("show"); // animate
-    }, 100);
-  }
-}
-
-  function startAutoSlide() {
-    interval = setInterval(() => {
-      showSlides(index + 1);
-    }, 3000);
-  }
-
-  function stopAutoSlide() {
-    clearInterval(interval);
-  }
-
-  window.changeSlide = function (n) {
-    stopAutoSlide();
-    showSlides(index + n);
-    startAutoSlide();
-  };
-
-  window.goToSlide = function (n) {
-    stopAutoSlide();
-    showSlides(n);
-    startAutoSlide();
-  };
-
-  showSlides(index);
-  startAutoSlide();
-
-});
-
+// ---------------- TYPEWRITER ----------------
 const texts = ["Digambar Maraskolhe", "Civil Engineer", "Estimator"];
 
 let count = 0;
@@ -606,6 +682,7 @@ let letter = "";
 
 function type() {
   if (count === texts.length) count = 0;
+
   currentText = texts[count];
   letter = currentText.slice(0, ++index);
 
@@ -624,9 +701,202 @@ function type() {
 
 type();
 
+// ---------------- SLIDER AUTO ----------------
+function showSlides(i) {
+  slides.forEach(s => s.classList.remove("active"));
+
+  if (i >= slides.length) slideIndex = 0;
+  else if (i < 0) slideIndex = slides.length - 1;
+  else slideIndex = i;
+
+  slides[slideIndex].classList.add("active");
+}
+
+function startAuto() {
+  interval = setInterval(() => {
+    showSlides(slideIndex + 1);
+  }, 3000);
+}
+
+function stopAuto() {
+  clearInterval(interval);
+}
+
+function changeSlide(n) {
+  stopAuto();
+  showSlides(slideIndex + n);
+  startAuto();
+}
+
+startAuto();
+
+// ---------------- IMAGE VIEWER ----------------
+let currentIndex = 0;
+let viewerSlides = document.querySelectorAll(".slide");
+
+function openImage(src) {
+  stopAuto();
+
+  document.getElementById("imageViewer").style.display = "flex";
+  document.getElementById("fullImage").src = src;
+
+  viewerSlides.forEach((img, i) => {
+    if (img.src.includes(src)) {
+      currentIndex = i;
+    }
+  });
+}
+
+function closeImage() {
+  document.getElementById("imageViewer").style.display = "none";
+  startAuto();
+}
+
+function nextImage() {
+  currentIndex++;
+  if (currentIndex >= viewerSlides.length) currentIndex = 0;
+
+  document.getElementById("fullImage").src = viewerSlides[currentIndex].src;
+}
+
+function prevImage() {
+  currentIndex--;
+  if (currentIndex < 0) currentIndex = viewerSlides.length - 1;
+
+  document.getElementById("fullImage").src = viewerSlides[currentIndex].src;
+}
+
+  
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".slider").forEach((slider) => {
+
+    let slides = slider.querySelectorAll(".slide");
+    let dots = slider.parentElement.querySelectorAll(".dot"); // 🔥 outside dots
+    let index = 0;
+    let interval;
+
+    function showSlides(i) {
+      slides.forEach(s => s.classList.remove("active"));
+      dots.forEach(d => d.classList.remove("active"));
+
+      if (i >= slides.length) index = 0;
+      else if (i < 0) index = slides.length - 1;
+      else index = i;
+
+      slides[index].classList.add("active");
+      if (dots[index]) dots[index].classList.add("active");
+    }
+
+    function startAuto() {
+      interval = setInterval(() => {
+        showSlides(index + 1);
+      }, 3000);
+    }
+
+    function stopAuto() {
+      clearInterval(interval);
+    }
+
+    // arrows
+    slider.querySelector(".prev").addEventListener("click", () => {
+      stopAuto();
+      showSlides(index - 1);
+      startAuto();
+    });
+
+    slider.querySelector(".next").addEventListener("click", () => {
+      stopAuto();
+      showSlides(index + 1);
+      startAuto();
+    });
+
+    // dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        stopAuto();
+        showSlides(i);
+        startAuto();
+      });
+    });
+
+    showSlides(index);
+    startAuto();
+
+  });
+
+});
+
+function goToSlide(n) {
+  document.querySelectorAll(".slider").forEach((slider) => {
+    let slides = slider.querySelectorAll(".slide");
+    let dots = slider.querySelectorAll(".dot");
+
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+
+    if (slides[n]) {
+      slides[n].classList.add("active");
+      if (dots[n]) dots[n].classList.add("active");
+    }
+  });
+}
+
+document.addEventListener("keydown", function(e) {
+
+  // 🔥 FULLSCREEN VIEWER CONTROL
+  let viewer = document.getElementById("imageViewer");
+
+  if (viewer && viewer.style.display === "flex") {
+    if (e.key === "ArrowRight") nextImage();
+    else if (e.key === "ArrowLeft") prevImage();
+    else if (e.key === "Escape") closeImage();
+    return; // stop here if viewer open
+  }
+
+  // 🔥 SLIDER CONTROL (when viewer not open)
+  document.querySelectorAll(".slider").forEach((slider) => {
+
+    let nextBtn = slider.querySelector(".next");
+    let prevBtn = slider.querySelector(".prev");
+
+    if (e.key === "ArrowRight") {
+      nextBtn.click();   // simulate click
+    } 
+    else if (e.key === "ArrowLeft") {
+      prevBtn.click();   // simulate click
+    }
+
+  });
+
+});
+
+function showSlides(i) {
+  slides.forEach(s => {
+    s.classList.remove("active");
+
+    if (s.tagName === "VIDEO") {
+      s.pause(); // stop video
+    }
+  });
+
+  index = (i + slides.length) % slides.length;
+
+  slides[index].classList.add("active");
+
+  // 🔥 play video if active
+  if (slides[index].tagName === "VIDEO") {
+    slides[index].play();
+  }
+}
+
 
 window.addEventListener('scroll', reveal);
 </script>
-
+<div id="imageViewer" onclick="closeImage()">
+  <button onclick="event.stopPropagation(); prevImage()" class="viewer-arrow left">❮</button>
+  <img id="fullImage">
+  <button onclick="event.stopPropagation(); nextImage()" class="viewer-arrow right">❯</button>
+</div>
 </body>
 </html>
