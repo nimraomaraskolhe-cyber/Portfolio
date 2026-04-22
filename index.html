@@ -183,6 +183,100 @@ footer {
 @media(max-width:768px){
   .hero {flex-direction:column;text-align:center;}
 }
+/* Slideshow */
+.slideshow-container {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  border-radius: 15px;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  display: block;
+}
+.slider {
+  position: relative;
+  max-width: 700px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Caption */
+.caption {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  backdrop-filter: blur(6px);
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.arrow:hover {
+  background: #38bdf8;
+}
+
+/* Dots */
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background: gray;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #38bdf8;
+}
 </style>
 </head>
 
@@ -284,25 +378,37 @@ footer {
 <!-- proof -->
 <section id="proof" class="reveal">
   <h2>Work proof</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>BOQ Sample</h3>
-      <p>Detailed BOQ for residential project</p>
-      <img src="boq.jpg" class="project-img">
+
+  <div class="slider">
+
+    <!-- Caption -->
+    <div class="caption" id="captionText">
+        PWD Internship Photos
     </div>
 
-    <div class="card">
-      <h3>AutoCAD Drawing</h3>
-      <p>2D plan used for quantity takeoff</p>
-      <img src="drawing.jpg" class="project-img">
+    <!-- Slides -->
+    <div class="slides">
+      <img src="pwd_site_1.jpg" class="slide active">
+      <img src="pwd_site_2.jpg" class="slide">
+      <img src="pwd_site_3.jpg" class="slide">
+      <img src="pwd_site_4.jpg" class="slide">
+      <img src="pwd_site_5.jpg" class="slide">
+
     </div>
 
-    <div class="card">
-      <h3>Site Work</h3>
-      <p>Experience from PWD Internship</p>
-      <img src="site.jpg" class="project-img">
-    </div>
+    <!-- Arrows -->
+    <button class="arrow prev" onclick="changeSlide(-1)">❮</button>
+    <button class="arrow next" onclick="changeSlide(1)">❯</button>
+
+  <!-- Dots -->
+  <div class="dots">
+      <span class="dot" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+      <span class="dot" onclick="goToSlide(4)"></span>
   </div>
+
 </section>
 
 <!-- PROJECTS -->
@@ -369,6 +475,7 @@ footer {
 
 <!-- Scroll Animation JS -->
 <script>
+// Scroll Reveal
 function reveal() {
   const elements = document.querySelectorAll('.reveal');
 
@@ -381,6 +488,67 @@ function reveal() {
     }
   });
 }
+
+window.addEventListener('scroll', reveal);
+
+
+// Slideshow
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let slides = document.querySelectorAll(".slide");
+  let dots = document.querySelectorAll(".dot");
+  let caption = document.getElementById("captionText");
+
+  let index = 0;
+  let interval;
+
+  function showSlides(i) {
+    if (slides.length === 0) return; // safety
+
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    if (i >= slides.length) index = 0;
+    else if (i < 0) index = slides.length - 1;
+    else index = i;
+
+    slides[index].classList.add("active");
+
+    if (dots[index]) dots[index].classList.add("active");
+
+    if (caption) {
+      caption.innerText = slides[index].getAttribute("data-text") || "PWD Work";
+    }
+  }
+
+  function startAutoSlide() {
+    interval = setInterval(() => {
+      showSlides(index + 1);
+    }, 3000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(interval);
+  }
+
+  window.changeSlide = function (n) {
+    stopAutoSlide();
+    showSlides(index + n);
+    startAutoSlide();
+  };
+
+  window.goToSlide = function (n) {
+    stopAutoSlide();
+    showSlides(n);
+    startAutoSlide();
+  };
+
+  showSlides(index);
+  startAutoSlide();
+
+});
+
 
 window.addEventListener('scroll', reveal);
 </script>
