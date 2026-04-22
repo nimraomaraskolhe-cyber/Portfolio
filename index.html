@@ -218,7 +218,16 @@ footer {
   display: none;
   border-radius: 15px;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+
+  transition: 
+    opacity 0.8s ease-in-out,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.slide:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
 }
 
 .slide.active {
@@ -248,6 +257,18 @@ footer {
 
   opacity: 0;
   transition: all 0.6s ease;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 3px;
+  color: #38bdf8;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
 /* Active animation */
@@ -318,7 +339,10 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <h1>Digambar Maraskolhe</h1>
+    <h1>
+  <span id="typing"></span>
+  <span class="cursor">|</span>
+</h1>
     <p>
       Civil Engineering Student | BOQ & Quantity Takeoff Specialist Delivering Accurate Estimation & Cost Optimization Solutions
     </p>
@@ -572,6 +596,33 @@ document.addEventListener("DOMContentLoaded", function () {
   startAutoSlide();
 
 });
+
+const texts = ["Digambar Maraskolhe", "Civil Engineer", "Estimator"];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+function type() {
+  if (count === texts.length) count = 0;
+  currentText = texts[count];
+  letter = currentText.slice(0, ++index);
+
+  document.getElementById("typing").innerHTML = letter;
+
+  if (letter.length === currentText.length) {
+    setTimeout(() => {
+      index = 0;
+      count++;
+      setTimeout(type, 300);
+    }, 1500);
+  } else {
+    setTimeout(type, 100);
+  }
+}
+
+type();
 
 
 window.addEventListener('scroll', reveal);
